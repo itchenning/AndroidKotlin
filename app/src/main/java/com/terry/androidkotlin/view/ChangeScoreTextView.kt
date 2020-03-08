@@ -28,7 +28,7 @@ class ChangeScoreTextView(context : Context , attrs : AttributeSet) : View(conte
     private var mScore = 1278
     private var mProgress = 0
     private var mOneTextWidth = 0F
-    private val DELAY = 3000L
+    private val DELAY = 2000L
 
     init {
         mHeight = DipPixelUtils.dip2px(50F)
@@ -47,7 +47,7 @@ class ChangeScoreTextView(context : Context , attrs : AttributeSet) : View(conte
 
     override fun onDraw(canvas : Canvas) {
         canvas.drawColor(mBgColor)
-        drawText(canvas)
+        drawScore(canvas)
         drawUnit(canvas)
     }
 
@@ -59,7 +59,7 @@ class ChangeScoreTextView(context : Context , attrs : AttributeSet) : View(conte
         canvas.drawText("天" , uinitPoint.x + width / 2F + wholeTextWidth / 2 , scoreBaseY , mUnitPaint)
     }
 
-    private fun drawText(canvas : Canvas) {
+    private fun drawScore(canvas : Canvas) {
         val text = mScore.toString()
         val len = text.length
         val point = PaintUtils.getCenterVerticalTextPoint(mScorePaint , mHeight , text)
@@ -93,7 +93,7 @@ class ChangeScoreTextView(context : Context , attrs : AttributeSet) : View(conte
     fun start(score : Int) {
         this.mScore = score
         val anim = ValueAnimator.ofInt(0 , 100)
-        anim.setDuration(2000L)
+        anim.setDuration(DELAY)
         anim.addUpdateListener(object : ValueAnimator.AnimatorUpdateListener {
             override fun onAnimationUpdate(animation : ValueAnimator?) {
                 mProgress = animation?.getAnimatedValue().toString().toInt()
