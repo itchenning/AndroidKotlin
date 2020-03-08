@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:paddingTop="24dp"
+    tools:context=".activity.MainActivity">
+
+    <EditText
+        android:id="@+id/et"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="18dp"
+        android:background="@drawable/shape_input"
+        android:gravity="center_vertical"
+        android:inputType="number"
+        android:maxLength="9"
+        android:paddingStart="15dp"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/startBtn"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="18dp"
+        android:background="@drawable/selector_btn"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:onClick="onSingleClick"
+        android:text="开始"
+        android:textColor="#000000"
+        android:textSize="16dp" />
+
+    <com.terry.androidkotlin.view.ChangeScoreTextView
+        android:id="@+id/changeScoreTextView"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp" />
+
+</LinearLayout>

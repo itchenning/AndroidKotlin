@@ -1,8 +1,10 @@
 package com.terry.androidkotlin.activity
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.View
 import com.terry.androidkotlin.R
+import com.terry.androidkotlin.activity.view.QQContinueDaysTest
 import com.terry.androidkotlin.activity.view.ViewMainActivity
 import common.base.BaseActivity
 import common.helper.SingleClickListener
@@ -20,6 +22,20 @@ class MainActivity : BaseActivity() , SingleClickListener {
         ThemeHelper.setTheme(this , false)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        jumpCur()
+    }
+
+    private fun jumpCur() {
+        val clazz = getJumpActivity()
+        if (clazz == null) {
+            return
+        }
+        IntentUtils.startActivity(this , clazz)
+    }
+
+    private fun getJumpActivity() : Class<out Activity>? {
+        return QQContinueDaysTest::class.java //TODO null
     }
 
     override fun onSingleClick(view : View) {

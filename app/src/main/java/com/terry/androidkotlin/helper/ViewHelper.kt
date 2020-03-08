@@ -1,6 +1,6 @@
 package com.terry.androidkotlin.helper
 
-import com.terry.androidkotlin.activity.MainActivity
+import com.terry.androidkotlin.activity.view.QQContinueDaysTest
 import com.terry.androidkotlin.model.Function
 
 /**
@@ -14,7 +14,7 @@ object ViewHelper {
     private val datas = mutableListOf<Function>()
 
     init {
-        datas.add(Function("哈哈哈哈哈" , MainActivity::class.java))
+        datas.add(Function("QQ达人连续登录天数" , QQContinueDaysTest::class.java))
     }
 
     fun getAll() : MutableList<Function> {
