@@ -1,0 +1,74 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+//百度Crab统计id.
+def crab_appkey = "2b3c56c0d9f9eab6"
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+        buildConfigField "String", "CRAB_APP_ID", "\"${crab_appkey}\""
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField "boolean", "DEBUG_ABLE", "true"
+        }
+        proguard {
+            buildConfigField "boolean", "DEBUG_ABLE", "true"
+        }
+        release {
+            buildConfigField "boolean", "DEBUG_ABLE", "false"
+        }
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+    buildToolsVersion = '28.0.3'
+
+    sourceSets {
+        main {
+            res.srcDirs = ['src/main/res']
+            assets.srcDirs = ['src/main/assets']
+            jniLibs.srcDirs = ['src/main/jniLibs']
+        }
+    }
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api 'com.android.support.constraint:constraint-layout:1.1.3'
+    api 'com.android.support:appcompat-v7:28.0.0'
+    api "com.android.support:support-v4:28.0.0"
+    api 'com.android.support:design:28.0.0'
+    api 'com.android.support:recyclerview-v7:28.0.0'
+    //Gson
+    api 'com.google.code.gson:gson:2.8.5'
+    //比普通的SurfaceView快很多，有时快两倍。
+    api 'com.github.ChillingVan:android-openGL-canvas:v1.4.2.2'
+    //混淆配置
+    api "com.blankj:free-proguard:1.0.2"
+
+    //百度crab
+    implementation 'crab.baidu.crabsdk:crabsdk:7.3.1@aar'
+    //屏幕适配
+    implementation 'me.jessyan:autosize:1.1.2'
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    //Glide插件（背景虚化， 圆角， 圆图）
+    implementation 'jp.wasabeef:glide-transformations:4.0.1'
+    implementation 'jp.wasabeef:blurry:3.0.0'
+}

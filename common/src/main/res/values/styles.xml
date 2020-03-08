@@ -1,0 +1,37 @@
+<resources>
+
+    <style name="bt_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="Theme.FullScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:immersive">false</item>
+    </style>
+
+    <style name="Theme.Common.Activity" parent="Theme.AppCompat">
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="EditStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:textSelectHandleLeft">@drawable/trans</item>
+        <item name="android:textSelectHandleRight">@drawable/trans</item>
+        <item name="android:colorControlActivated">@drawable/trans</item>
+        <item name="android:textSelectHandle">@drawable/trans</item>
+        <item name="android:windowContentTransitions">true</item>
+    </style>
+
+</resources>

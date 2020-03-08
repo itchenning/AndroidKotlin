@@ -1,0 +1,110 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply from: 'and_res_guard.gradle'
+
+// #####  配置信息START #####
+def appname = "AndroidKotlin"
+//签名信息。
+def keyPath = "../doc/${appname}.jks"
+def keyPass = "Terry123"
+def keystoreAlias = "${appname}"
+//应用名，打包时用，不要有空格
+// #####  配置信息END #####
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
+    defaultConfig {
+        applicationId "com.terry.androidkotlin"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 2
+        versionName "1.0.1"
+
+        multiDexEnabled true
+        renderscriptTargetApi 18
+        renderscriptSupportModeEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+
+        //Apk瘦身配置 start#############
+        ndk {
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'//同时支持32位和64位手机
+        }
+        resConfigs "en"
+        resConfigs "xxhdpi"
+        //Apk瘦身配置 end#############
+
+        compileOptions {
+            sourceCompatibility = JavaVersion.VERSION_1_8
+            targetCompatibility = JavaVersion.VERSION_1_8
+        }
+
+        lintOptions {
+            checkReleaseBuilds false
+            abortOnError false
+        }
+    }
+    signingConfigs {
+        general {
+            storeFile file(keyPath)
+            storePassword keyPass
+            keyAlias keystoreAlias
+            keyPassword keyPass
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.general
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+        }
+        proguard {
+            minifyEnabled false
+            signingConfig signingConfigs.general
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+        }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.general
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+        }
+    }
+
+    sourceSets {
+        main {
+            res.srcDirs = ['src/main/res']
+            assets.srcDirs = ['src/main/assets']
+            jniLibs.srcDirs = ['src/main/jniLibs']
+        }
+    }
+
+    /**
+     *
+     * 修改生成apk文件名。
+     */
+    applicationVariants.all {
+        def buildType = it.buildType.name
+        def fileName
+        def createTime = new Date().format("yyMMddHHmmss", TimeZone.getTimeZone("GMT+08:00"))
+        it.outputs.each {
+            if (buildType == "release") {
+                fileName = "release_V${defaultConfig.versionName}_N${defaultConfig.versionCode}_${appname}_${defaultConfig.applicationId}_${createTime}.apk"
+            } else {
+                fileName = "debug_V${defaultConfig.versionName}_N${defaultConfig.versionCode}_${appname}_${defaultConfig.applicationId}_${createTime}.apk"
+            }
+            it.outputFileName = fileName
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(":common")
+}

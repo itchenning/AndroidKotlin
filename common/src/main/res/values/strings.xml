@@ -1,0 +1,13 @@
+<resources>
+    <string name="post_feedback_success">We will process your feedback immediately, thank you for your support</string>
+    <string name="feedback_title">User Feedback</string>
+    <string name="no_feedback_email_input">Please fill in your email address</string>
+    <string name="no_feedback_content_input">No feedback has been filled</string>
+    <string name="text_feedback_content_title">Feedback:</string>
+    <string name="text_feedback_content_hint">Please provide your suggestions</string>
+    <string name="text_feedback_email_title">Email address:</string>
+    <string name="text_feedback_commit">Submit</string>
+    <string name="text_feedback_email_hint">Please provide your email address</string>
+    <string name="cooler_mark_dialog_market_not_found">Google Play is not installed. Please install it before rating.</string>
+
+</resources>
