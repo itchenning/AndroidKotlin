@@ -12,7 +12,16 @@ import common.base.CommonSdk
 class VApp : Application() {
 
     override fun onCreate() {
+        app = this
         super.onCreate()
         CommonSdk.init(this , MainActivity::class.java)
+    }
+
+    companion object {
+        private lateinit var app : Application
+
+        fun get() : Application {
+            return app
+        }
     }
 }

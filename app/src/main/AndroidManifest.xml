@@ -9,7 +9,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/Theme.Common.Activity">
-        <activity android:name="com.terry.androidkotlin.activity.MainActivity">
+        <activity android:name="com.terry.androidkotlin.activity.view.ViewMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -17,7 +17,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.view.ViewMainActivity" />
+        <activity android:name=".activity.MainActivity" />
     </application>
 
 </manifest>

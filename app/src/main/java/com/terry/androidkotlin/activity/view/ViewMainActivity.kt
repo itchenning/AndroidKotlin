@@ -1,9 +1,12 @@
 package com.terry.androidkotlin.activity.view
 
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.terry.androidkotlin.R
+import com.terry.androidkotlin.adapter.ViewAdapter
 import common.base.BaseActivity
 import common.utils.base.ThemeHelper
+import kotlinx.android.synthetic.main.activity_view.*
 
 /**
  * Author: Terry
@@ -17,5 +20,11 @@ class ViewMainActivity : BaseActivity() {
         ThemeHelper.setTheme(this , false)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view)
+        setListView()
+    }
+
+    private fun setListView() {
+        listview.layoutManager = LinearLayoutManager(this)
+        listview.adapter = ViewAdapter()
     }
 }

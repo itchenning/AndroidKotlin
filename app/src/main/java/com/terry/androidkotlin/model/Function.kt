@@ -9,4 +9,4 @@ import android.app.Activity
  * Date: 2020-03-08 16:22
  * Comment:
  */
-data class Function(val name : String , val clazz : Class<Activity>)
+data class Function(val name : String , val clazz : Class<out Activity>)
