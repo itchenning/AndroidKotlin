@@ -11,6 +11,7 @@ import android.view.View
 import com.terry.androidkotlin.utils.PaintUtils
 import common.utils.base.DipPixelUtils
 
+
 /**
  * Author: Terry
  * bilibili: 码农安小辰
@@ -41,7 +42,7 @@ class ChangeScoreTextView(context : Context , attrs : AttributeSet) : View(conte
         mUnitPaint = Paint()
         mUnitPaint.style = Paint.Style.FILL
         mUnitPaint.color = Color.WHITE
-        mUnitPaint.textSize = DipPixelUtils.dip2px(25F).toFloat()
+        mUnitPaint.textSize = DipPixelUtils.dip2px(12F).toFloat()
     }
 
     override fun onDraw(canvas : Canvas) {
@@ -51,8 +52,11 @@ class ChangeScoreTextView(context : Context , attrs : AttributeSet) : View(conte
     }
 
     private fun drawUnit(canvas : Canvas) {
-
-
+        val text = mScore.toString()
+        val wholeTextWidth = mScorePaint.measureText(text)
+        val uinitPoint = PaintUtils.getCenterVerticalTextPoint(mUnitPaint , mHeight , "天")
+        val scoreBaseY = (mHeight / 2 - mScorePaint.fontMetrics.top / 2 - mScorePaint.fontMetrics.bottom / 2)
+        canvas.drawText("天" , uinitPoint.x + width / 2F + wholeTextWidth / 2 , scoreBaseY , mUnitPaint)
     }
 
     private fun drawText(canvas : Canvas) {
