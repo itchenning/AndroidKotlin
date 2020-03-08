@@ -26,6 +26,7 @@ class QQContinueDaysTest : BaseActivity() , SingleClickListener {
     override fun onSingleClick(view : View) {
         when (view) {
             startBtn -> start()
+            clearBtn -> et.setText("")
         }
     }
 
