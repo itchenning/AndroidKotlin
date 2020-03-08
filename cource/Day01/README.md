@@ -10,5 +10,10 @@
  ![image](des.gif)
 
 
-## 代码讲解：
+## 代码讲解:
+
+[bilibli](https://space.bilibili.com/476440159?from=search&seid=1381306178785305543)
+
+[Youtube](https://www.youtube.com/channel/UCPxCsIg3Y46Cv98SwWCAxAA?view_as=subscriber)
+
 
