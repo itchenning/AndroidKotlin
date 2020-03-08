@@ -1,2 +1,5 @@
-# AndroidKotlin
-安卓Kotlin实战教学，如无意外，每周末录一篇。
+# Andrdoi Kotlin项目实战
+
+## 自定义View
+
+### [Day01.实现QQ达人连续登录天数效果](cource/Day01/README.md)
