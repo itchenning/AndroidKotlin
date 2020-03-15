@@ -51,7 +51,7 @@ object BitmapUtils {
     }
 
     // Bitmap变色
-    private fun changeColor(srcBitmap : Bitmap , color : Int) : Bitmap {
+    fun changeColor(srcBitmap : Bitmap , color : Int) : Bitmap {
         val outBitmap = Bitmap.createBitmap(srcBitmap.width , srcBitmap.height , srcBitmap.config)
         val canvas = Canvas(outBitmap)
         val paint = Paint()

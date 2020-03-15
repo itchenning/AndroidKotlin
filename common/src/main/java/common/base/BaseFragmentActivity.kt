@@ -3,6 +3,9 @@ package common.base
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
 import com.baidu.crabsdk.CrabSDK
+import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
+import common.utils.base.GlideUtils
 
 /**
  * Author: Terry
@@ -10,10 +13,12 @@ import com.baidu.crabsdk.CrabSDK
  * Comment:
  */
 abstract class BaseFragmentActivity : FragmentActivity() {
+    lateinit var requestManager : RequestManager
 
     override fun onCreate(savedInstanceState : Bundle?) {
         CommonSdk.fixOnCreate(this , savedInstanceState)
         super.onCreate(Bundle())
+        requestManager = Glide.with(this)
     }
 
     override fun onPause() {
@@ -24,5 +29,11 @@ abstract class BaseFragmentActivity : FragmentActivity() {
     override fun onResume() {
         super.onResume()
         CrabSDK.onResume(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        GlideUtils.pauseRequets(requestManager)
+        GlideUtils.clearMemory(Glide.get(this))
     }
 }

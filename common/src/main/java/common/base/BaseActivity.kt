@@ -3,6 +3,9 @@ package common.base
 import android.app.Activity
 import android.os.Bundle
 import com.baidu.crabsdk.CrabSDK
+import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
+import common.utils.base.GlideUtils
 
 
 /**
@@ -12,10 +15,12 @@ import com.baidu.crabsdk.CrabSDK
  */
 abstract class BaseActivity : Activity() {
 
+    lateinit var requestManager : RequestManager
 
     override fun onCreate(savedInstanceState : Bundle?) {
         CommonSdk.fixOnCreate(this , savedInstanceState)
         super.onCreate(Bundle())
+        requestManager = Glide.with(this)
     }
 
     override fun onPause() {
@@ -26,5 +31,11 @@ abstract class BaseActivity : Activity() {
     override fun onResume() {
         super.onResume()
         CrabSDK.onResume(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        GlideUtils.pauseRequets(requestManager)
+        GlideUtils.clearMemory(Glide.get(this))
     }
 }

@@ -5,6 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
+import common.utils.base.GlideUtils
 
 /**
  * Author: Terry
@@ -13,12 +16,15 @@ import androidx.fragment.app.Fragment
  */
 abstract class BaseFragment : Fragment() {
 
-    var mRootView : View? = null
+    lateinit var requestManager : RequestManager
+
+    protected var mRootView : View? = null
 
     protected abstract val layoutId : Int
 
     override fun onCreateView(inflater : LayoutInflater , container : ViewGroup? , savedInstanceState : Bundle?) : View? {
         mRootView = View.inflate(context , layoutId , null)
+        requestManager = Glide.with(this)
         return mRootView
     }
 
@@ -33,5 +39,10 @@ abstract class BaseFragment : Fragment() {
         return if (mRootView == null) {
             null
         } else mRootView !!.findViewById(id)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        GlideUtils.pauseRequets(requestManager)
     }
 }

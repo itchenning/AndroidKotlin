@@ -1,15 +1,18 @@
 package common.utils.base
 
+import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
+import com.bumptech.glide.load.DecodeFormat
+import com.bumptech.glide.load.resource.bitmap.BitmapTransformation
 import com.bumptech.glide.load.resource.gif.GifDrawable
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import common.base.CommonSdk
-import common.model.GlideRoundTransform
 
 /**
  * Author: Terry
@@ -18,95 +21,128 @@ import common.model.GlideRoundTransform
  */
 object GlideUtils {
 
-    fun showImage(imageView : ImageView , path : String , corner : Int = 0) {
-        var builder = Glide.with(CommonSdk.getApp().applicationContext).load(path)
-        if (corner > 0) {
-            val options = RequestOptions.bitmapTransform(GlideRoundTransform(corner))
+    fun showImage(requestManager : RequestManager , imageView : ImageView , path : String , transform : BitmapTransformation? = null , lowQuality : Boolean = false) {
+        var builder = requestManager.load(path)
+        if (transform != null) {
+            val options = RequestOptions.bitmapTransform(transform)
             builder = builder.apply(options)
+        }
+        if (lowQuality) {
+            builder = builder.format(DecodeFormat.PREFER_RGB_565)
         }
         builder.skipMemoryCache(true).into(imageView)
     }
 
-    fun showImage(imageView : ImageView , res : Int , corner : Int = 0) {
-        var builder = Glide.with(CommonSdk.getApp().applicationContext).load(res)
-        if (corner > 0) {
-            val options = RequestOptions.bitmapTransform(GlideRoundTransform(corner))
+    fun showImage(requestManager : RequestManager , imageView : ImageView , res : Int , transform : BitmapTransformation? = null , lowQuality : Boolean = false) {
+        var builder = requestManager.load(res)
+        if (transform != null) {
+            val options = RequestOptions.bitmapTransform(transform)
             builder = builder.apply(options)
+        }
+        if (lowQuality) {
+            builder = builder.format(DecodeFormat.PREFER_RGB_565)
         }
         builder.skipMemoryCache(true).into(imageView)
     }
 
-    fun showImage(imageView : ImageView , drawable : Drawable , corner : Int = 0) {
-        var builder = Glide.with(CommonSdk.getApp().applicationContext).load(drawable)
-        if (corner > 0) {
-            val options = RequestOptions.bitmapTransform(GlideRoundTransform(corner))
+    fun showImage(requestManager : RequestManager , imageView : ImageView , drawable : Drawable , transform : BitmapTransformation? = null , lowQuality : Boolean = false) {
+        var builder = requestManager.load(drawable)
+        if (transform != null) {
+            val options = RequestOptions.bitmapTransform(transform)
             builder = builder.apply(options)
+        }
+        if (lowQuality) {
+            builder = builder.format(DecodeFormat.PREFER_RGB_565)
         }
         builder.skipMemoryCache(true).into(imageView)
     }
 
-    fun showImage(imageView : ImageView , uri : Uri , corner : Int = 0) {
-        var builder = Glide.with(CommonSdk.getApp().applicationContext).load(uri)
-        if (corner > 0) {
-            val options = RequestOptions.bitmapTransform(GlideRoundTransform(corner))
+    fun showImage(requestManager : RequestManager , imageView : ImageView , uri : Uri , transform : BitmapTransformation? = null , lowQuality : Boolean = false) {
+        var builder = requestManager.load(uri)
+        if (transform != null) {
+            val options = RequestOptions.bitmapTransform(transform)
             builder = builder.apply(options)
+        }
+        if (lowQuality) {
+            builder = builder.format(DecodeFormat.PREFER_RGB_565)
         }
         builder.skipMemoryCache(true).into(imageView)
     }
 
-    fun showCircleImage(imageView : ImageView , path : String) {
-        Glide.with(CommonSdk.getApp().applicationContext).load(path).circleCrop().skipMemoryCache(true).into(imageView)
-    }
-
-    fun showCircleImage(imageView : ImageView , res : Int) {
-        Glide.with(CommonSdk.getApp().applicationContext).load(res).circleCrop().skipMemoryCache(true).into(imageView)
-    }
-
-    fun showCircleImage(imageView : ImageView , drawable : Drawable) {
-        Glide.with(CommonSdk.getApp().applicationContext).load(drawable).circleCrop().skipMemoryCache(true).into(imageView)
-    }
-
-    fun showCircleImage(imageView : ImageView , uri : Uri) {
-        Glide.with(CommonSdk.getApp().applicationContext).load(uri).circleCrop().skipMemoryCache(true).into(imageView)
-    }
-
-    fun showGif(gifView : ImageView , path : String , corner : Int = 0) {
-        var builder = Glide.with(CommonSdk.getApp().applicationContext).asGif().load(path)
-        if (corner > 0) {
-            val options = RequestOptions.bitmapTransform(GlideRoundTransform(corner))
+    fun showImage(requestManager : RequestManager , imageView : ImageView , bitmap : Bitmap , transform : BitmapTransformation? = null , lowQuality : Boolean = false) {
+        var builder = requestManager.load(bitmap)
+        if (transform != null) {
+            val options = RequestOptions.bitmapTransform(transform)
             builder = builder.apply(options)
         }
-        builder.skipMemoryCache(true).into(gifView)
+        if (lowQuality) {
+            builder = builder.format(DecodeFormat.PREFER_RGB_565)
+        }
+        builder.skipMemoryCache(true).into(imageView)
     }
 
-    fun showGif(gifView : ImageView , res : Int , corner : Int = 0) {
-        var builder = Glide.with(CommonSdk.getApp().applicationContext).asGif().load(res)
-        if (corner > 0) {
-            val options = RequestOptions.bitmapTransform(GlideRoundTransform(corner))
+    fun showGif(requestManager : RequestManager , imageView : ImageView , path : String , transform : BitmapTransformation? = null , lowQuality : Boolean = false) {
+        var builder = requestManager.asGif().load(path)
+        if (transform != null) {
+            val options = RequestOptions.bitmapTransform(transform)
             builder = builder.apply(options)
         }
-        builder.skipMemoryCache(true).into(gifView)
+        if (lowQuality) {
+            builder = builder.format(DecodeFormat.PREFER_RGB_565)
+        }
+        builder.skipMemoryCache(true).into(imageView)
     }
 
-    fun showGif(gifView : ImageView , drawable : Drawable , corner : Int = 0) {
-        var builder = Glide.with(CommonSdk.getApp().applicationContext).asGif().load(drawable)
-        if (corner > 0) {
-            val options = RequestOptions.bitmapTransform(GlideRoundTransform(corner))
+    fun showGif(requestManager : RequestManager , imageView : ImageView , res : Int , transform : BitmapTransformation? = null , lowQuality : Boolean = false) {
+        var builder = requestManager.asGif().load(res)
+        if (transform != null) {
+            val options = RequestOptions.bitmapTransform(transform)
             builder = builder.apply(options)
         }
-        builder.skipMemoryCache(true).into(gifView)
+        if (lowQuality) {
+            builder = builder.format(DecodeFormat.PREFER_RGB_565)
+        }
+        builder.skipMemoryCache(true).into(imageView)
     }
 
-    fun showGif(gifView : ImageView , uri : Uri , corner : Int = 0) {
-        var builder = Glide.with(CommonSdk.getApp().applicationContext).asGif().load(uri)
-        if (corner > 0) {
-            val options = RequestOptions.bitmapTransform(GlideRoundTransform(corner))
+    fun showGif(requestManager : RequestManager , imageView : ImageView , drawable : Drawable , transform : BitmapTransformation? = null , lowQuality : Boolean = false) {
+        var builder = requestManager.asGif().load(drawable)
+        if (transform != null) {
+            val options = RequestOptions.bitmapTransform(transform)
             builder = builder.apply(options)
         }
-        builder.skipMemoryCache(true).into(gifView)
+        if (lowQuality) {
+            builder = builder.format(DecodeFormat.PREFER_RGB_565)
+        }
+        builder.skipMemoryCache(true).into(imageView)
     }
 
-    fun showGifFirstFrame(imageView : ImageView , path : String) {
+    fun showGif(requestManager : RequestManager , imageView : ImageView , uri : Uri , transform : BitmapTransformation? = null , lowQuality : Boolean = false) {
+        var builder = requestManager.asGif().load(uri)
+        if (transform != null) {
+            val options = RequestOptions.bitmapTransform(transform)
+            builder = builder.apply(options)
+        }
+        if (lowQuality) {
+            builder = builder.format(DecodeFormat.PREFER_RGB_565)
+        }
+        builder.skipMemoryCache(true).into(imageView)
+    }
+
+    fun showGif(requestManager : RequestManager , imageView : ImageView , bitmap : Bitmap , transform : BitmapTransformation? = null , lowQuality : Boolean = false) {
+        var builder = requestManager.asGif().load(bitmap)
+        if (transform != null) {
+            val options = RequestOptions.bitmapTransform(transform)
+            builder = builder.apply(options)
+        }
+        if (lowQuality) {
+            builder = builder.format(DecodeFormat.PREFER_RGB_565)
+        }
+        builder.skipMemoryCache(true).into(imageView)
+    }
+
+
+    fun showGifFirstFrame(requestManager : RequestManager , imageView : ImageView , path : String) {
         val context = CommonSdk.getApp()
         Glide.with(context).load(path).into(object : SimpleTarget<Drawable>() {
             override fun onResourceReady(drawable : Drawable , transition : Transition<in Drawable>?) {
@@ -116,5 +152,13 @@ object GlideUtils {
                 }
             }
         })
+    }
+
+    fun clearMemory(glide : Glide) {
+        glide.clearMemory()
+    }
+
+    fun pauseRequets(requestManager : RequestManager) {
+        requestManager.pauseRequests()
     }
 }
