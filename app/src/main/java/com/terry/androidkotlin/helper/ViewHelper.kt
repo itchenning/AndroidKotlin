@@ -1,6 +1,7 @@
 package com.terry.androidkotlin.helper
 
 import com.terry.androidkotlin.activity.view.QQContinueDaysTest
+import com.terry.androidkotlin.activity.view.WeilidaiBorrowTest
 import com.terry.androidkotlin.model.Function
 
 /**
@@ -15,6 +16,7 @@ object ViewHelper {
 
     init {
         datas.add(Function("QQ达人连续登录天数" , QQContinueDaysTest::class.java))
+        datas.add(Function("微粒贷借钱" , WeilidaiBorrowTest::class.java))
     }
 
     fun getAll() : MutableList<Function> {

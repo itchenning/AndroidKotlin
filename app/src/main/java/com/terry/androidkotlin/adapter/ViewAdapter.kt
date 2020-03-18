@@ -25,6 +25,7 @@ class ViewAdapter : RecyclerView.Adapter<ViewAdapter.ViewHoler>() , SingleClickL
         val view = View.inflate(VApp.get() , R.layout.item_view , null)
         val params = LinearLayout.LayoutParams(- 1 , DipPixelUtils.dip2px(48F))
         view.layoutParams = params
+        params.topMargin = DipPixelUtils.dip2px(10F)
         return ViewHoler(view)
     }
 

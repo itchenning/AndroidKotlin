@@ -15,19 +15,30 @@
         android:maxLength="9" />
 
     <TextView
-        android:id="@+id/startBtn"
+        android:id="@+id/resetBtn"
         style="@style/TextBtn"
-        android:text="开始" />
+        android:text="重置" />
 
-    <TextView
-        android:id="@+id/clearBtn"
-        style="@style/TextBtn"
-        android:text="清除" />
 
-    <com.terry.androidkotlin.view.ChangeScoreTextView
-        android:id="@+id/changeScoreTextView"
+    <com.terry.androidkotlin.view.DialProgressBar
+        android:id="@+id/dialProgressBar"
         android:layout_width="200dp"
-        android:layout_height="50dp"
+        android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp" />
+
+    <TextView
+        android:id="@+id/borrowBtn"
+        android:layout_width="233dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape_borrow"
+        android:gravity="center"
+        android:onClick="onSingleClick"
+        android:paddingBottom="5dp"
+        android:text="借款"
+        android:textColor="#FFFFFF"
+        android:textSize="20dp" />
+
 </LinearLayout>

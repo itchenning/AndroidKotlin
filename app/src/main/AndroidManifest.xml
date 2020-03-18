@@ -19,6 +19,7 @@
         </activity>
         <activity android:name=".activity.view.ViewMainActivity" />
         <activity android:name=".activity.view.QQContinueDaysTest" />
+        <activity android:name=".activity.view.WeilidaiBorrowTest" />
     </application>
 
 </manifest>
