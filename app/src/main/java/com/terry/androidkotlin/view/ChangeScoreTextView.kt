@@ -8,8 +8,8 @@ import android.graphics.Paint
 import android.graphics.Point
 import android.util.AttributeSet
 import android.view.View
-import com.terry.androidkotlin.utils.PaintUtils
 import common.utils.base.DipPixelUtils
+import common.utils.base.PaintUtils
 
 
 /**
