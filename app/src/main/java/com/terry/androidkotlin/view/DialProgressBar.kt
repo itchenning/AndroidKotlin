@@ -22,10 +22,12 @@ class DialProgressBar(context : Context , attrs : AttributeSet) : View(context ,
     private val mTotalPaint = Paint()
     private val mAvailableTipPaint = Paint()
     private val mAvailableAmountPaint = Paint()
+    private val mMarkPaint = Paint()
     private val START_ANGLE = 135F
     private val ROTATION_MAX = 270F
-    private var mTotal = 21000.123456F
-    private var mCurAmount = 21000.123456F
+    private var mTotal = 21000F
+    private var mCurAmount = 10500F
+    private val PADDING = DipPixelUtils.dip2px(20F)
 
     init {
         mBgPaint.style = Paint.Style.STROKE
@@ -54,18 +56,47 @@ class DialProgressBar(context : Context , attrs : AttributeSet) : View(context ,
         mAvailableAmountPaint.color = Color.parseColor("#18B4ED")
         mAvailableAmountPaint.textSize = DipPixelUtils.dip2px(18F).toFloat()
         mAvailableAmountPaint.isFakeBoldText = true
+
+        mMarkPaint.style = Paint.Style.FILL
+        mMarkPaint.isAntiAlias = true
+        mMarkPaint.color = Color.parseColor("#E0E0E0")
+        mMarkPaint.textSize = DipPixelUtils.dip2px(12F).toFloat()
     }
 
     override fun onDraw(canvas : Canvas) {
         val rectf = RectF()
-        rectf.left = mBgPaint.strokeWidth / 2
-        rectf.top = mBgPaint.strokeWidth / 2
-        rectf.right = width - mBgPaint.strokeWidth / 2
-        rectf.bottom = height - mBgPaint.strokeWidth / 2
+        rectf.left = mBgPaint.strokeWidth / 2 + PADDING
+        rectf.top = mBgPaint.strokeWidth / 2 + PADDING
+        rectf.right = width - mBgPaint.strokeWidth / 2 - PADDING
+        rectf.bottom = height - mBgPaint.strokeWidth / 2 - PADDING
         drawBg(canvas , rectf)
         drawProgress(canvas , rectf)
         drawTotal(canvas)
         drawAvailable(canvas)
+        drawMark(canvas)
+    }
+
+    private fun drawMark(canvas : Canvas) {
+        val oneAngle = ROTATION_MAX / 4
+        val r = DipPixelUtils.dip2px(1.5F)
+        val rectf = RectF()
+        rectf.left = width / 2F - r
+        rectf.top = PADDING - 2F * r
+        rectf.right = rectf.left + 2 * r
+        rectf.bottom = rectf.top + 2 * r
+        val centerAngle = START_ANGLE + ROTATION_MAX / 2
+        val oneValue = mTotal / 4F
+        for (i in 1 .. 3) {
+            canvas.save()
+            val text = (oneValue * i).toInt().toString()
+            canvas.rotate(START_ANGLE + i * oneAngle - centerAngle , width / 2F , height / 2F)
+            canvas.drawOval(rectf , mMarkPaint)
+            val point = PaintUtils.getCenterHorizontalTextPoint(mMarkPaint , width , text)
+            val bounds = Rect()
+            mMarkPaint.getTextBounds(text , 0 , text.length , bounds)
+            canvas.drawText(text , point.x.toFloat() , PADDING - DipPixelUtils.dip2px(5F).toFloat() , mMarkPaint)
+            canvas.restore()
+        }
     }
 
     private fun drawAvailable(canvas : Canvas) {
