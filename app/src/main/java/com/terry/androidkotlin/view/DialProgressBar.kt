@@ -88,7 +88,7 @@ class DialProgressBar(context : Context , attrs : AttributeSet) : View(context ,
         val oneValue = mTotal / 4F
         for (i in 1 .. 3) {
             canvas.save()
-            val text = (oneValue * i).toInt().toString()
+            val text = "¥" + (oneValue * i).toInt().toString()
             canvas.rotate(START_ANGLE + i * oneAngle - centerAngle , width / 2F , height / 2F)
             canvas.drawOval(rectf , mMarkPaint)
             val point = PaintUtils.getCenterHorizontalTextPoint(mMarkPaint , width , text)
@@ -133,12 +133,12 @@ class DialProgressBar(context : Context , attrs : AttributeSet) : View(context ,
         val value = num.toString()
         val index = value.indexOf(".")
         if (index < 0) {
-            return "￥${num}.00"
+            return "¥${num}.00"
         }
         if (index >= value.length - 2) {
-            return "￥${num}0"
+            return "¥${num}0"
         }
-        return "￥${value.substring(0 , index + 3)}"
+        return "¥${value.substring(0 , index + 3)}"
     }
 
     private fun drawProgress(canvas : Canvas , rectf : RectF) {
