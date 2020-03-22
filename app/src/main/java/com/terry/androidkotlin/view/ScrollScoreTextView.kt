@@ -20,8 +20,8 @@ class ScrollScoreTextView(context : Context , attrs : AttributeSet) : View(conte
     private val mBgColor = Color.RED
     private val mScorePaint = Paint()
     private val mUnitPaint = Paint()
-    private var mScore = 0
-    private var mProgress = 0
+    private var mScore = 8888
+    private var mProgress = 100
     private var mOneNumWidth = 0F
 
     init {

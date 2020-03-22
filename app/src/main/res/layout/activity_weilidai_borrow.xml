@@ -19,6 +19,14 @@
         style="@style/TextBtn"
         android:text="重置" />
 
+
+    <com.terry.androidkotlin.view.DialProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="230dp"
+        android:layout_height="230dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp" />
+
     <TextView
         android:id="@+id/borrowBtn"
         android:layout_width="233dp"
