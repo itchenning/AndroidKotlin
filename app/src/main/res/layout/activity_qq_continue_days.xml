@@ -24,10 +24,12 @@
         style="@style/TextBtn"
         android:text="清除" />
 
-    <com.terry.androidkotlin.view.ChangeScoreTextView
-        android:id="@+id/changeScoreTextView"
+    <com.terry.androidkotlin.view.ScrollScoreTextView
+        android:id="@+id/scrollScoreTextView"
+        style="@style/Widget.AppCompat.RatingBar"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp" />
+        android:layout_marginTop="100dp" />
+
 </LinearLayout>

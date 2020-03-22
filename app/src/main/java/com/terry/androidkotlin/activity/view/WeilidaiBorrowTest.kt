@@ -25,7 +25,6 @@ class WeilidaiBorrowTest : BaseActivity() , SingleClickListener {
 
     override fun onSingleClick(view : View) {
         when (view) {
-            resetBtn -> dialProgressBar.reset()
             borrowBtn -> borrow()
         }
     }
@@ -35,6 +34,5 @@ class WeilidaiBorrowTest : BaseActivity() , SingleClickListener {
         if (TextUtils.isEmpty(text)) {
             return
         }
-        dialProgressBar.borrow(text.toString().toFloat())
     }
 }

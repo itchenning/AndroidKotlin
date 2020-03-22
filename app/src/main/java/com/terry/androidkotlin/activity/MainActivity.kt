@@ -4,8 +4,8 @@ import android.app.Activity
 import android.os.Bundle
 import android.view.View
 import com.terry.androidkotlin.R
+import com.terry.androidkotlin.activity.view.QQContinueDaysTest
 import com.terry.androidkotlin.activity.view.ViewMainActivity
-import com.terry.androidkotlin.activity.view.WeilidaiBorrowTest
 import common.base.BaseActivity
 import common.helper.SingleClickListener
 import common.utils.base.ThemeHelper
@@ -35,7 +35,7 @@ class MainActivity : BaseActivity() , SingleClickListener {
     }
 
     private fun getJumpActivity() : Class<out Activity>? {
-        return WeilidaiBorrowTest::class.java //TODO null
+        return QQContinueDaysTest::class.java //TODO null
     }
 
     override fun onSingleClick(view : View) {
