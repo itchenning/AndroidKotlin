@@ -2,10 +2,7 @@ package com.terry.androidkotlin.view
 
 import android.animation.ValueAnimator
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.Point
+import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 import common.utils.base.DipPixelUtils
@@ -21,23 +18,23 @@ import common.utils.base.PaintUtils
 class ScrollScoreTextView(context : Context , attrs : AttributeSet) : View(context , attrs) {
 
     private val mBgColor = Color.RED
-    private val mSocrePaint = Paint()
+    private val mScorePaint = Paint()
     private val mUnitPaint = Paint()
-    private var mScore = 1234
+    private var mScore = 0
     private var mProgress = 0
-    private var mOneWidth = 0F
+    private var mOneNumWidth = 0F
 
     init {
-        mSocrePaint.style = Paint.Style.FILL
-        mSocrePaint.isAntiAlias = true
-        mSocrePaint.textSize = DipPixelUtils.dip2px(20F).toFloat()
-        mSocrePaint.isFakeBoldText = true
-        mSocrePaint.color = Color.WHITE
-        mOneWidth = mSocrePaint.measureText("0")
+        mScorePaint.style = Paint.Style.FILL
+        mScorePaint.isAntiAlias = true
+        mScorePaint.textSize = DipPixelUtils.dip2px(30F).toFloat()
+        mScorePaint.isFakeBoldText = true
+        mScorePaint.color = Color.WHITE
+        mOneNumWidth = mScorePaint.measureText("0")
 
         mUnitPaint.style = Paint.Style.FILL
         mUnitPaint.isAntiAlias = true
-        mUnitPaint.textSize = DipPixelUtils.dip2px(12F).toFloat()
+        mUnitPaint.textSize = DipPixelUtils.dip2px(14F).toFloat()
         mUnitPaint.color = Color.WHITE
     }
 
@@ -49,29 +46,32 @@ class ScrollScoreTextView(context : Context , attrs : AttributeSet) : View(conte
 
     private fun drawUnit(canvas : Canvas) {
         val scoreValue = mScore.toString()
-        val point = PaintUtils.getCenterTextPoint(mSocrePaint , width , height , scoreValue)
-        canvas.drawText("天" , point.x + mOneWidth * scoreValue.length.toFloat() , point.y.toFloat() , mUnitPaint)
+        val point = PaintUtils.getCenterTextPoint(mScorePaint , width , height , scoreValue)
+        canvas.drawText("天" , point.x + mOneNumWidth * scoreValue.length , point.y.toFloat() , mUnitPaint)
     }
 
     private fun drawScore(canvas : Canvas) {
         val scoreValue = mScore.toString()
+        val point = PaintUtils.getCenterTextPoint(mScorePaint , width , height , scoreValue)
         val len = scoreValue.length
-        val point = PaintUtils.getCenterTextPoint(mSocrePaint , width , height , scoreValue)
         for (i in 0 until len) {
             val des = scoreValue[i].toString()
+            if (des.equals("0")) {
+                continue
+            }
             val last = getLast(des)
             val lastPoint = getLastPoint(i , point , des)
-            canvas.drawText(last.toString() , lastPoint.x.toFloat() , lastPoint.y.toFloat() , mSocrePaint)
-            canvas.drawText((last + 1).toString() , lastPoint.x.toFloat() , lastPoint.y.toFloat() + height , mSocrePaint)
+            canvas.drawText(last.toString() , lastPoint.x , lastPoint.y , mScorePaint)
+            canvas.drawText((last + 1).toString() , lastPoint.x , lastPoint.y + height , mScorePaint)
         }
     }
 
-    private fun getLastPoint(i : Int , point : Point , des : String) : Point {
-        val oneProgress = 100 / des.toFloat()
-        val curProgess = mProgress % oneProgress
-        val y = point.y - height * (curProgess) / oneProgress
-        val x = point.x + i * mOneWidth
-        return Point(x.toInt() , y.toInt())
+    private fun getLastPoint(i : Int , point : Point , des : String) : PointF {
+        val oneMaxProgress = 100 / des.toFloat()
+        val curProgress = mProgress % oneMaxProgress
+        val y = point.y - height * curProgress / oneMaxProgress
+        val x = point.x + i * mOneNumWidth
+        return PointF(x , y)
     }
 
     private fun getLast(des : String) : Int {
