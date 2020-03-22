@@ -1,3 +1,5 @@
+国内访问github速度过慢，仓库已转移至[码云](https://gitee.com/itchenning/AndroidKotlin)
+
 # Andrdoi Kotlin项目实战
 
 ## 自定义View
