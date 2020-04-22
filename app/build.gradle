@@ -30,7 +30,7 @@ android {
 
         //Apk瘦身配置 start#############
         ndk {
-            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'//同时支持32位和64位手机
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86'//同时支持32位和64位手机
         }
         resConfigs "en"
         resConfigs "xxhdpi"

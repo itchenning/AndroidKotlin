@@ -1,4 +1,4 @@
-# 实现QQ连续登录天数滚动TextView
+# 微粒贷表盘进度条
 
 ## 原效果：
 
@@ -13,7 +13,5 @@
 ## 代码讲解:
 
 [bilibli](https://space.bilibili.com/476440159?from=search&seid=1381306178785305543)
-
-[Youtube](https://www.youtube.com/channel/UCPxCsIg3Y46Cv98SwWCAxAA?view_as=subscriber)
 
 

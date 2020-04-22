@@ -7,6 +7,7 @@ import com.terry.androidkotlin.R
 import common.base.BaseActivity
 import common.helper.SingleClickListener
 import common.utils.base.ThemeHelper
+import common.utils.utilcode.util.KeyboardUtils
 import kotlinx.android.synthetic.main.activity_qq_continue_days.*
 
 /**
@@ -35,6 +36,7 @@ class QQContinueDaysTest : BaseActivity() , SingleClickListener {
         if (TextUtils.isEmpty(num)) {
             return
         }
-        changeScoreTextView.start(num.toInt())
+        KeyboardUtils.hideSoftInput(et)
+        scrollScoreTextView.start(num.toInt())
     }
 }
